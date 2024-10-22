@@ -1,12 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { BasicContext } from "../../ContextAPIs/BasicProvider";
 
 const Cart = () => {
-   
+   const {cart} = useContext(BasicContext)
+
+   console.log(cart)
 
     return (
         <div className="m-mt_16px">

@@ -12,6 +12,7 @@ import useHasAccess from "../../Hooks/useHasAccess";
 import { OrderContext } from "../../ContextAPIs/OrderProvider";
 import useSmallScreen from "../../Hooks/useSmallScreen";
 
+
 const MenuBar = () => {
   const [selected, setSelected] = useState('');
   const location = useLocation();

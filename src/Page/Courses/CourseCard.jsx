@@ -1,17 +1,33 @@
+import { useContext } from "react";
+import { BasicContext } from "../../ContextAPIs/BasicProvider";
+import { ToastContainer, toast } from 'react-toastify';
+
 const CourseCard = ({courseData}) => {
 
-    const {photo, course_name, trainer_data, regular_price, discount_price} = courseData;
+    const {cart, setCart} = useContext(BasicContext);
+    const {photo, course_name, trainer_data, regular_price, discount_price, id} = courseData;
 
     const discountPercenteage = ((regular_price - discount_price)/regular_price) * 100;
 
-    // console.log(discountPercenteage.toFixed(2))
+    const handleAddCart = data => {
+        if(cart.length < 1){
+           return setCart((item) => [...item, data]);
+        }
+        else{
+            toast.error('you cannot add more than 1 course')
+        }
+
+        
+    }
+
+    // console.log(cart)
 
     return (
         <div className=" bg-white shadow-lg rounded-lg overflow-hidden">
             <div className="relative">
                 <img src={photo} alt="" className="h-72 w-full"/>
                 <div className="absolute top-0 left-0 p-2">
-                    <h3 className="text-white text-xl font-bold">Data Entry</h3>
+                    <h3 className="text-white text-xl font-bold">{cart.length}</h3>
                 </div>
             </div>
             <div className="p-4">
@@ -40,9 +56,10 @@ const CourseCard = ({courseData}) => {
                     {/* <span className="text-green-600 text-sm">Earn Tk 48</span> */}
                 </div>
                 <div className="mt-4 flex gap-2">
-                    <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-500 w-full font-bold text-md">Add To Cart</button>
+                    <button onClick={() => handleAddCart(courseData)} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-500 w-full font-bold text-md">Add To Cart</button>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
 
     );
