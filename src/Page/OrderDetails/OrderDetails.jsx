@@ -5,7 +5,10 @@ import TrackOrder from "./TrackOrder";
 
 const OrderDetails = () => {
     const {order} = useContext(BasicContext)
-
+    const shippingCharge = 120;
+    const totalAmount = order.sub_total_course_fee + shippingCharge;
+    const paidAmount = totalAmount;
+    const dueAmount = totalAmount - paidAmount; 
 
     return (
         
@@ -62,34 +65,34 @@ const OrderDetails = () => {
                             <p className="font-bold  md:mb-4 w-full">Order Summary </p>
                             <div className="space-y-1 w-full">
                                 <div className="flex items-center justify-between">
-                                    <p>Full Name :</p>
+                                    <p>Sub-total Amount :</p>
                                     <p className="text-start">
-                                        name
+                                        {order.sub_total_course_fee}Tk
                                     </p>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <p>Country :</p>
-                                    <p>country</p>
+                                    <p>Shipping Charge :</p>
+                                    <p>{shippingCharge}Tk</p>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <p>District Thana :</p>
+                                    <p>Total Amount :</p>
                                     <p className="text-start">
-                                        Thana
+                                        {totalAmount}Tk
                                     </p>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <p>Address :</p>
-                                    <p>Address</p>
+                                    <p>Due Amount :</p>
+                                    <p>{dueAmount}Tk</p>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <p>Order Notes :</p>
+                                    <p>Paid Amount :</p>
                                     <p className="text-start">
-                                        Order Notes
+                                        {totalAmount}Tk
                                     </p>
                                 </div>
                                 <div className="flex items-center justify-between">
-                                    <p>Mobile :</p>
-                                    <p>Mobile</p>
+                                    <p>Payment Type :</p>
+                                    <p>Visa-Credit-Card</p>
                                 </div>
                             </div>
                             </div>
@@ -113,10 +116,10 @@ const OrderDetails = () => {
                                             Quantity
                                         </th>
                                         <th className="lg:w-20 md:w-20 w-16  py-2 md:py-4 lg:py-6 border text-center">
-                                         Price
+                                         Price(BDT)
                                         </th>
                                         <th className="lg:w-20 md:w-20 w-16  py-2 md:py-4 lg:py-6 border text-center">
-                                            Total
+                                            Total(BDT)
                                         </th>
                                     </tr>
                                 </thead>
@@ -125,25 +128,25 @@ const OrderDetails = () => {
                                         <tr >
                                             <td className="border text-center w-10 h-12 px-2">
                                                 <img
-                                                    className=" w-full h-full object-cover mx-auto"
-                                                    src=''
+                                                    className=" w-full h-20 object-center mx-auto"
+                                                    src={order.course_image}
                                                     alt=''
                                                 />
                                             </td>
                                             <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                               Course name
+                                               {order.course_name}
                                             </td>
                                             <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                               Student name
+                                               {order.name}
                                             </td>
                                             <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                               quantity
+                                               {order.course_qty}
                                             </td>
                                             <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                                price
+                                                {order.discount_course_fee}Tk
                                             </td>
                                             <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                               total price
+                                               {order.sub_total_course_fee}Tk
                                             </td>
                                         </tr>
                                     

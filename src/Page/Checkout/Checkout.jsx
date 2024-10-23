@@ -7,7 +7,7 @@ import { BasicContext } from "../../ContextAPIs/BasicProvider";
 const Checkout = () => {
     // const axiosPublic = useAxiosPublic();
 
-    const { cartSummary, setOrder } = useContext(BasicContext);
+    const { cartSummary, setOrder, setCart, setCartSummary } = useContext(BasicContext);
     const selectGender = useRef(null);
     const selectBloodGroup = useRef(null);
     const course_qty = cartSummary.quantity;
@@ -16,6 +16,7 @@ const Checkout = () => {
     const discount_course_fee = parseInt(cartSummary.discount_price);
     const sub_total_course_fee = discount_course_fee * course_qty;
     const course_id = cartSummary.course_id;
+    const course_name = cartSummary.course_name;
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -66,11 +67,14 @@ const Checkout = () => {
             sub_total_course_fee,
             course_id,
             school_collage_name,
-            course_image
+            course_image, 
+            course_name,
         }
 
         setOrder(coursePurchaseData);
-        console.log(coursePurchaseData)
+        // console.log(coursePurchaseData)
+        setCart([]);
+        setCartSummary([])
 
         navigate('/order-details')
     }

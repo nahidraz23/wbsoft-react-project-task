@@ -33,13 +33,13 @@ const Cart = () => {
                                         Course
                                     </th>
                                     <th className="text-[14.4px] font-bold p-[7px] text-black">
-                                        Price
+                                        Price(BDT)
                                     </th>
                                     <th className="text-[14.4px] font-bold p-[7px] text-black">
                                         Quantity
                                     </th>
                                     <th className="text-[14.4px] font-bold p-[7px] text-black">
-                                        Sub Total
+                                        Sub Total(BDT)
                                     </th>
                                 </tr>
                             </thead>
@@ -72,7 +72,7 @@ const Cart = () => {
                                     </td>
                                     <td>
                                         <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-                                            {cart[0]?.discount_price}
+                                            {cart[0]?.discount_price}Tk
                                         </p>
                                     </td>
                                     <td>
@@ -119,8 +119,7 @@ const Cart = () => {
                                     </td>
                                     <td>
                                         <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-
-                                            {totalPrice}
+                                            {totalPrice}Tk
                                         </p>
                                     </td>
                                 </tr>
@@ -134,7 +133,7 @@ const Cart = () => {
                                 Cart Summary
                             </h2>
                             <div className="py-3 flex justify-between border-b border-gray-300">
-                                <p className="text-black font-bold">Total Price: {totalPrice}</p>
+                                <p className="text-black font-bold">Total Price: {totalPrice}Tk</p>
                                 <p className="text-black font-bold">
                                 </p>
                             </div>
