@@ -27,7 +27,7 @@ const Search = () => {
         setResult(res.data.singleCoursePurchaseData)
     };
 
-    console.log(size)
+    console.log(result)
 
     return (
         <div className="min-h-screen flex flex-col text-text_40px font-bold items-center justify-center">
@@ -80,7 +80,7 @@ const Search = () => {
                                     <td className="border text-center w-10 h-12 px-2">
                                         <img
                                             className=" w-full h-20 object-center mx-auto"
-                                            src={result.photo}
+                                            src={result.course_data.photo}
                                             alt=''
                                         />
                                     </td>
