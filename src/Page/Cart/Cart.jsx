@@ -10,9 +10,6 @@ const Cart = () => {
     const { cart, setCartSummary, quantity, setQuantity } = useContext(BasicContext);
     const totalPrice = cart[0]?.discount_price * quantity;
 
-    // console.log(totalPrice)
-    // console.log(cart)
-
     const handleCartSummary = (discount_price, photo, course_name, id, regular_price) => {
         const summary = { quantity, discount_price, totalPrice, photo, course_name, course_id : id, regular_price };
         setCartSummary(summary);
@@ -44,7 +41,10 @@ const Cart = () => {
                                 </tr>
                             </thead>
 
-                            <tbody className="overflow-x-auto ">
+                            {
+                                cart.length > 0
+                                ? 
+                                <tbody className="overflow-x-auto ">
 
                                 <tr className="border-b border-gray-300 overflow-x-auto">
                                     <td>
@@ -125,6 +125,9 @@ const Cart = () => {
                                 </tr>
 
                             </tbody>
+                            : 
+                                                    <p>Cart is empty</p>
+                            }
                         </table>
                     </div>
                     <div className="lg:w-[41%] bg-white border-2 ">
@@ -133,7 +136,14 @@ const Cart = () => {
                                 Cart Summary
                             </h2>
                             <div className="py-3 flex justify-between border-b border-gray-300">
-                                <p className="text-black font-bold">Total Price: {totalPrice}Tk</p>
+                                <p className="text-black font-bold">Total Price :
+                                    {
+                                        cart.length > 0
+                                        ? 
+                                        totalPrice
+                                        : 
+                                        '0'
+                                    } Tk</p>
                                 <p className="text-black font-bold">
                                 </p>
                             </div>

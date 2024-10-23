@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import useGetCourse from "../../Hooks/useGetCourse";
 import CourseCard from "./CourseCard";
 
-
 const Courses = () => {
     const [courses] = useGetCourse();
     const [currentPage, setCurrentPage] = useState(1);
@@ -11,10 +10,6 @@ const Courses = () => {
     const totalPages = 3;
 
     const pages = [...Array(totalPages).keys()]
-    // const pages = [];
-
-    // for (let i = 0; i < totalPages;)
-        // console.log(totalPages)
 
     useEffect(() => {
         const startIndex = (currentPage - 1) * itemsPerPage;
@@ -34,12 +29,6 @@ const Courses = () => {
         console.log(pageNo)
         setCurrentPage(pageNo)
     }
-
-    // console.log(courses)
-    // const lastCourseIndex = currentPage * coursePerPage;
-    // const firstCourseIndex = lastCourseIndex - coursePerPage;
-
-    // const courseData = courses.slice(firstCourseIndex, lastCourseIndex)
 
     return (
         <div className="m-mt_16px">

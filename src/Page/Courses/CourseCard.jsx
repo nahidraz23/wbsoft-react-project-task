@@ -10,8 +10,8 @@ const CourseCard = ({ courseData }) => {
 
     const handleAddCart = data => {
         if (cart.length < 1) {
-            toast.success('Course successfully added to cart')
-            return setCart((item) => [...item, data]);
+            setCart((item) => [...item, data]);
+            return toast.success('Course successfully added to cart')
         }
         else {
             toast.error('you cannot add more than 1 course')
@@ -19,8 +19,6 @@ const CourseCard = ({ courseData }) => {
 
 
     }
-
-    // console.log(cart)
 
     return (
         <div className=" bg-white shadow-lg rounded-lg overflow-hidden">
@@ -59,7 +57,7 @@ const CourseCard = ({ courseData }) => {
                     <button onClick={() => handleAddCart(courseData)} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-500 w-full font-bold text-md">Add To Cart</button>
                 </div>
             </div>
-            <ToastContainer></ToastContainer>
+            <ToastContainer />
         </div>
 
     );
