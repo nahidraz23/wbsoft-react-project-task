@@ -13,8 +13,8 @@ const Cart = () => {
     // console.log(totalPrice)
     // console.log(cart)
 
-    const handleCartSummary = (price, photo, course_name) => {
-        const summary = { quantity, price, totalPrice, photo, course_name };
+    const handleCartSummary = (discount_price, photo, course_name, id, regular_price) => {
+        const summary = { quantity, discount_price, totalPrice, photo, course_name, course_id : id, regular_price };
         setCartSummary(summary);
     }
 
@@ -140,7 +140,7 @@ const Cart = () => {
                             </div>
 
                             <Link
-                                onClick={() => handleCartSummary(cart[0]?.discount_price, cart[0]?.photo, cart[0]?.course_name)}
+                                onClick={() => handleCartSummary(cart[0]?.discount_price, cart[0]?.photo, cart[0]?.course_name, cart[0]?.id, cart[0]?.regular_price)}
                                 to={`/checkout`}
                                 state={"bdt"}
                                 className="font-medium text-black mb-2 border-2 hover:bg-[#D2C5A2] duration-300 py-2 px-4  block text-center mx-auto w-full"

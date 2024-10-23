@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import { BasicContext } from "../../ContextAPIs/BasicProvider";
 import TrackOrder from "./TrackOrder";
 
 
 const OrderDetails = () => {
+    const {order} = useContext(BasicContext)
 
 
     return (
@@ -12,51 +15,51 @@ const OrderDetails = () => {
                         <div className="text-center  flex flex-col justify-center items-center ">
                             <p className="text-xl font-bold">Order Information</p>
                             <p className="p-3 rounded-md lg:my-2 my-1 w-fit border bg-[#D2C5A2] font-bold text-lg">
-                                Order Id :
+                                Order Id : 
                                 <span className="font-semibold">
-                                  order id
+                                   {order.course_id}
                                 </span>
                             </p>
                         </div>
                         <div className="w-full border flex flex-col md:flex-row md:items-start   md:mt-4 mt-3 bg-[#D2C5A2] rounded-md p-4  ">
                             <div className="md:text-base text-sm flex-1  font-semibold   md:border-r-2 md:border-black md:pr-10">
-                                <p className="font-bold md:mb-4 w-full">Demo information,Checkout page information will be here </p>
+                                <p className="font-bold md:mb-4 w-full">Shipping Address </p>
                                 <div className="space-y-1 w-full">
                                     <div className="flex items-center justify-between">
                                         <p>Full Name :</p>
                                         <p className="text-start">
-                                            name
+                                            {order.name}
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <p>Country :</p>
-                                        <p>country</p>
+                                        <p>Bangladesh</p>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <p>District Thana :</p>
                                         <p className="text-start">
-                                            Thana
+                                            {order.present_address}
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <p>Address :</p>
-                                        <p>Address</p>
+                                        <p>{order.present_address}</p>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <p>Order Notes :</p>
                                         <p className="text-start">
-                                            Order Notes
+                                            -
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <p>Mobile :</p>
-                                        <p>Mobile</p>
+                                        <p>{order.phone_no}</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="md:text-base text-sm  flex-1 font-semibold  md:ml-10 mt-m_medium">
-                            <p className="font-bold  md:mb-4 w-full">Demo information,Checkout page information will be here </p>
+                            <p className="font-bold  md:mb-4 w-full">Order Summary </p>
                             <div className="space-y-1 w-full">
                                 <div className="flex items-center justify-between">
                                     <p>Full Name :</p>

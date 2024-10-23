@@ -1,22 +1,31 @@
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useRef } from "react";
 import { BasicContext } from "../../ContextAPIs/BasicProvider";
+// import useAxiosPublic from '../../Hooks/useAxiosPublic'
 
 const Checkout = () => {
+    // const axiosPublic = useAxiosPublic();
 
-    const { cartSummary } = useContext(BasicContext);
+    const { cartSummary, setOrder } = useContext(BasicContext);
     const selectGender = useRef(null);
     const selectBloodGroup = useRef(null);
-    // console.log(cartSummary)
+    const course_qty = cartSummary.quantity;
+    const course_fee = parseInt(cartSummary.regular_price);
+    const total_course_fee = course_fee * course_qty;
+    const discount_course_fee = parseInt(cartSummary.discount_price);
+    const sub_total_course_fee = discount_course_fee * course_qty;
+    const course_id = cartSummary.course_id;
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
-
+        const formData = new FormData(form);
+        const photo = formData.get('photo');
         const name = form.name.value;
         const email = form.email.value;
-        const phone_no = form.phone_no_value;
+        const phone_no = form.phone_no.value;
         const father_name = form.father_name.value;
         const father_phone_no = form.father_phone_no.value;
         const job_title = form.job_title.value;
@@ -25,12 +34,45 @@ const Checkout = () => {
         const nid_no = form.nid_no.value;
         const date_of_birth = form.date_of_birth.value;
         const gender = selectGender.current.value;
-        const bloodGroup = selectBloodGroup.current.value;
+        const blood_group = selectBloodGroup.current.value;
         const present_address = form.present_address.value;
         const permanent_address = form.permanent_address.value;
-        const photo = form.photo.value;
+        const course_image = cartSummary.photo;
+        // const photo = form.photo.value.slice(12, 24);
+        // const photo = ''
+        const school_collage_name = form.school_collage_name.value;
 
-        console.log(name, gender, date_of_birth);
+
+        const coursePurchaseData = {
+            name,
+            email,
+            phone_no,
+            father_name,
+            father_phone_no,
+            job_title,
+            local_guardian_name,
+            local_guardian_phone_no,
+            nid_no,
+            date_of_birth,
+            gender,
+            blood_group,
+            present_address,
+            permanent_address,
+            photo,
+            course_fee,
+            course_qty,
+            total_course_fee,
+            discount_course_fee,
+            sub_total_course_fee,
+            course_id,
+            school_collage_name,
+            course_image
+        }
+
+        setOrder(coursePurchaseData);
+        console.log(coursePurchaseData)
+
+        navigate('/order-details')
     }
 
     return (
@@ -85,7 +127,7 @@ const Checkout = () => {
                             <label htmlFor="father_phone_no" className="block font-semibold text-base mb-2">Father/Mother Phone No:<span className='text-red-600'>*</span></label>
                             <input
                                 name='father_phone_no'
-                                type="text"
+                                type="number"
                                 id="father_phone_no"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
@@ -158,8 +200,9 @@ const Checkout = () => {
                                 ref={selectGender}
                                 id="gender"
                                 className="w-full border border-gray-300 rounded-md p-2"
+                                defaultValue="Select Gender"
                             >
-                                <option value="" disabled selected>Select Gender</option>
+                                <option disabled>Select Gender</option>
                                 <option value="Female">Female</option>
                                 <option value="Male">Male</option>
                                 <option value="Others">Other</option>
@@ -171,8 +214,9 @@ const Checkout = () => {
                                 ref={selectBloodGroup}
                                 id="bloodGroup"
                                 className="w-full border border-gray-300 rounded-md p-2"
+                                defaultValue="Select Blood Group"
                             >
-                                <option value="" disabled selected>Select Blood Group</option>
+                                <option disabled>Select Blood Group</option>
                                 <option value="A+">A+</option>
                                 <option value="A-">A-</option>
                                 <option value="B+">B+</option>
@@ -208,7 +252,8 @@ const Checkout = () => {
                         <input
                             name='photo'
                             type="file"
-                            id="dob"
+                            id="photo"
+                            accept="image/jpeg, image/png, image/gif, image/svg+xml"
                             className="w-full border border-gray-300 rounded-md p-2"
                         />
                     </div>
@@ -261,7 +306,7 @@ const Checkout = () => {
                                             </td>
                                             <td>
                                                 <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-                                                    {cartSummary?.price}
+                                                    {cartSummary?.discount_price}
                                                 </p>
                                             </td>
                                             <td>

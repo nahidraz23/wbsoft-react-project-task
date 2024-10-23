@@ -17,10 +17,16 @@ const BasicProvider = ({ children }) => {
         return savedCartSummary ? JSON.parse(savedCartSummary) : [];
     })
 
+    const [order, setOrder] = useState (() => {
+        const savedOrder = localStorage.getItem('order');
+        return savedOrder ? JSON.parse(savedOrder) : [];
+    })
+
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
         localStorage.setItem('cartSummary', JSON.stringify(cartSummary));
-    }, [cart, cartSummary])
+        localStorage.setItem('order', JSON.stringify(order))
+    }, [cart, cartSummary, order])
 
     // console.log(cart)
     const componentRef = useRef()
@@ -37,6 +43,8 @@ const BasicProvider = ({ children }) => {
         setCartSummary,
         quantity,
         setQuantity,
+        order, 
+        setOrder
     };
     return <BasicContext.Provider value={info}>{children}</BasicContext.Provider>;
 };
