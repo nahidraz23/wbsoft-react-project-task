@@ -10,7 +10,7 @@ const useGetCourse = () => {
         queryKey: ['courses'],
         queryFn: async () => {
             const res = await axiosPublic.get('/get-course-list')
-            return res.data.courseData;
+            return res?.data?.courseData;
         }
     })
     return [courses]
