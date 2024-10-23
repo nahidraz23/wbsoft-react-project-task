@@ -6,7 +6,8 @@ export const BasicContext = createContext(null);
 const BasicProvider = ({ children }) => {
     const [sidebarOpen, setSideBarOpen] = useState(true);
     const [modalImage, setModalImage] = useState(true);
-    const [quantity, setQuantity] = useState(1)
+    const [quantity, setQuantity] = useState(1);
+    const [result, setResult] = useState([])
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem('cart');
         return savedCart ? JSON.parse(savedCart) : [];
@@ -44,7 +45,9 @@ const BasicProvider = ({ children }) => {
         quantity,
         setQuantity,
         order, 
-        setOrder
+        setOrder,
+        result, 
+        setResult
     };
     return <BasicContext.Provider value={info}>{children}</BasicContext.Provider>;
 };
