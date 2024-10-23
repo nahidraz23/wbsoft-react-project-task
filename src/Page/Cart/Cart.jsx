@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -7,16 +7,19 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { BasicContext } from "../../ContextAPIs/BasicProvider";
 
 const Cart = () => {
-    const { cart } = useContext(BasicContext);
-    const [quantity, setQuantity] = useState(1)
-    const totalPrice = cart[0].discount_price * quantity;
+    const { cart, setCartSummary, quantity, setQuantity } = useContext(BasicContext);
+    const totalPrice = cart[0]?.discount_price * quantity;
 
-    console.log(totalPrice)
-    console.log(cart)
+    // console.log(totalPrice)
+    // console.log(cart)
+
+    const handleCartSummary = (price, photo, course_name) => {
+        const summary = { quantity, price, totalPrice, photo, course_name };
+        setCartSummary(summary);
+    }
 
     return (
         <div className="m-mt_16px">
-
             <h1 className="text-sm text-start md:text-text_xl lg:py-0 font-bold">
                 Cart
             </h1>
@@ -85,9 +88,9 @@ const Cart = () => {
                                                         >
                                                             -
                                                         </button>
-                                                        : 
+                                                        :
                                                         <button
-                                                            className="px-4 w-[30px] font-bold font_standard my-1.5"
+                                                            className="text-gray-300 cursor-default px-4 w-[30px] font-bold font_standard my-1.5"
 
                                                         >
                                                             -
@@ -133,12 +136,12 @@ const Cart = () => {
                             <div className="py-3 flex justify-between border-b border-gray-300">
                                 <p className="text-black font-bold">Total Price: {totalPrice}</p>
                                 <p className="text-black font-bold">
-
                                 </p>
                             </div>
 
                             <Link
-                                to={`/cart/checkout`}
+                                onClick={() => handleCartSummary(cart[0]?.discount_price, cart[0]?.photo, cart[0]?.course_name)}
+                                to={`/checkout`}
                                 state={"bdt"}
                                 className="font-medium text-black mb-2 border-2 hover:bg-[#D2C5A2] duration-300 py-2 px-4  block text-center mx-auto w-full"
                             >

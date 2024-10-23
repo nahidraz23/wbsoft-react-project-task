@@ -22,7 +22,7 @@ const Courses = () => {
 
     const [courses] = useGetCourse();
 
-    console.log(courses)
+    // console.log(courses)
 
     return (
         <div className="m-mt_16px">

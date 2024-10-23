@@ -8,6 +8,7 @@ import useUser from "../../Security/useUser";
 import { FaUserCircle } from "react-icons/fa";
 import useSmallScreen from "../../Hooks/useSmallScreen";
 import { FaShoppingCart } from "react-icons/fa";
+import { BasicContext } from "../../ContextAPIs/BasicProvider";
 
 const NavbarTop = () => {
   const { open, setOpen, sidebarRef } = useContext(OrderContext);
@@ -16,7 +17,7 @@ const NavbarTop = () => {
   const navigate = useNavigate();
   const [userData, , refetch] = useUser();
   const imgUrl = `https://littleaccount.com/uploads/userProfile/`
-
+  const { cart } = useContext(BasicContext)
 
   const handleLogout = async () => {
     try {
@@ -72,8 +73,13 @@ const NavbarTop = () => {
           />
         </div>
         <div className="hidden lg:block"></div>
-        <div className="flex w-full justify-end items-center">
-          <FaShoppingCart className="text-black text-2xl"></FaShoppingCart>
+        <div className="flex w-full justify-end items-center relative">
+          <div className="absolute w-5 h-5 -top-1 -right-4 bg-red-500 text-center rounded-full">
+            {
+              cart.length
+            }
+          </div>
+          <Link to={'/cart'}><FaShoppingCart className="text-black text-2xl"></FaShoppingCart></Link>
         </div>
 
         <div

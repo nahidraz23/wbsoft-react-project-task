@@ -2,22 +2,22 @@ import { useContext } from "react";
 import { BasicContext } from "../../ContextAPIs/BasicProvider";
 import { ToastContainer, toast } from 'react-toastify';
 
-const CourseCard = ({courseData}) => {
+const CourseCard = ({ courseData }) => {
 
-    const {cart, setCart} = useContext(BasicContext);
-    const {photo, course_name, trainer_data, regular_price, discount_price, id} = courseData;
-
-    const discountPercenteage = ((regular_price - discount_price)/regular_price) * 100;
+    const { cart, setCart } = useContext(BasicContext);
+    const { photo, course_name, trainer_data, regular_price, discount_price } = courseData;
+    const discountPercenteage = ((regular_price - discount_price) / regular_price) * 100;
 
     const handleAddCart = data => {
-        if(cart.length < 1){
-           return setCart((item) => [...item, data]);
+        if (cart.length < 1) {
+            toast.success('Course successfully added to cart')
+            return setCart((item) => [...item, data]);
         }
-        else{
+        else {
             toast.error('you cannot add more than 1 course')
         }
 
-        
+
     }
 
     // console.log(cart)
@@ -25,9 +25,9 @@ const CourseCard = ({courseData}) => {
     return (
         <div className=" bg-white shadow-lg rounded-lg overflow-hidden">
             <div className="relative">
-                <img src={photo} alt="" className="h-72 w-full"/>
+                <img src={photo} alt="" className="h-72 w-full" />
                 <div className="absolute top-0 left-0 p-2">
-                    <h3 className="text-white text-xl font-bold">{cart.length}</h3>
+                    {/* <h3 className="text-white text-xl font-bold">{cart.length}</h3> */}
                 </div>
             </div>
             <div className="p-4">

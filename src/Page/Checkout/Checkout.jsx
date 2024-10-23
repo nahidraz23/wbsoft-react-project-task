@@ -1,85 +1,161 @@
-import React from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useContext, useRef } from "react";
+import { BasicContext } from "../../ContextAPIs/BasicProvider";
 
 const Checkout = () => {
+
+    const { cartSummary } = useContext(BasicContext);
+    const selectGender = useRef(null);
+    const selectBloodGroup = useRef(null);
+    // console.log(cartSummary)
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.target;
+
+        const name = form.name.value;
+        const email = form.email.value;
+        const phone_no = form.phone_no_value;
+        const father_name = form.father_name.value;
+        const father_phone_no = form.father_phone_no.value;
+        const job_title = form.job_title.value;
+        const local_guardian_name = form.local_guardian_name.value;
+        const local_guardian_phone_no = form.local_guardian_phone_no.value;
+        const nid_no = form.nid_no.value;
+        const date_of_birth = form.date_of_birth.value;
+        const gender = selectGender.current.value;
+        const bloodGroup = selectBloodGroup.current.value;
+        const present_address = form.present_address.value;
+        const permanent_address = form.permanent_address.value;
+        const photo = form.photo.value;
+
+        console.log(name, gender, date_of_birth);
+    }
+
     return (
         <div className="  mt-5 border mx-2">
-            <div class="bg-[#6f42c1] text-white p-6 text-center mb-5">
+            <div className="bg-[#6f42c1] text-white p-6 text-center mb-5">
                 <h2 className='text-5xl font-bold'>Trainee Admission Form</h2>
             </div>
-            <form className="bg-white shadow-md rounded-lg p-6">
+            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6">
                 {/* Trainee Information Section */}
                 <div className="form-section">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         <div>
-                            <label htmlFor="fullName" className="block font-semibold text-base mb-2">Full Name:</label>
+                            <label htmlFor="name" className="block font-semibold text-base mb-2">Full Name:<span className='text-red-600'>*</span></label>
                             <input
+                                name='name'
                                 type="text"
-                                id="fullName"
+                                id="name"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
                         <div>
-                            <label htmlFor="formNo" className="block font-semibold text-base mb-2">Form no:</label>
+                            <label htmlFor="email" className="block font-semibold text-base mb-2">Email:<span className='text-red-600'>*</span></label>
                             <input
-                                type="text"
-                                id="formNo"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label htmlFor="parentName" className="block font-semibold text-base mb-2">Father/Mother Name:</label>
-                            <input
-                                type="text"
-                                id="parentName"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="parentNumber" className="block font-semibold text-base mb-2">Number:</label>
-                            <input
-                                type="text"
-                                id="parentNumber"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label htmlFor="school" className="block font-semibold text-base mb-2">School/College:</label>
-                            <input
-                                type="text"
-                                id="school"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="jobInfo" className="block font-semibold text-base mb-2">Job Information:</label>
-                            <input
-                                type="text"
-                                id="jobInfo"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label htmlFor="email" className="block font-semibold text-base mb-2">Email:</label>
-                            <input
+                                name='email'
                                 type="email"
                                 id="email"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
                         <div>
-                            <label htmlFor="gender" className="block font-semibold text-base mb-2">Gender:</label>
+                            <label htmlFor="phone_no" className="block font-semibold text-base mb-2">Phone No:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='phone_no'
+                                type="number"
+                                id="phone_no"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label htmlFor="father_name" className="block font-semibold text-base mb-2">Father/Mother Name:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='father_name'
+                                type="text"
+                                id="father_name"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="father_phone_no" className="block font-semibold text-base mb-2">Father/Mother Phone No:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='father_phone_no'
+                                type="text"
+                                id="father_phone_no"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="school_collage_name" className="block font-semibold text-base mb-2">School/College:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='school_collage_name'
+                                type="text"
+                                id="school_collage_name"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <label htmlFor="job_title" className="block font-semibold text-base mb-2">Job Information:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='job_title'
+                                type="text"
+                                id="job_title"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="local_guardian_name" className="block font-semibold text-base mb-2">Local Guardian’s Name:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='local_guardian_name'
+                                type="text"
+                                id="local_guardian_name"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="local_guardian_phone_no" className="block font-semibold text-base mb-2">Local Guardian’s Mobile No:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='local_guardian_phone_no'
+                                type="number"
+                                id="local_guardian_phone_no"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label htmlFor="nid_no" className="block font-semibold text-base mb-2">NID Number:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='nid_no'
+                                type="text"
+                                id="nid_no"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="date_of_birth" className="block font-semibold text-base mb-2">Date of Birth:<span className='text-red-600'>*</span></label>
+                            <input
+                                name='date_of_birth'
+                                type="date"
+                                id="date_of_birth"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label htmlFor="gender" className="block font-semibold text-base mb-2">Gender:<span className='text-red-600'>*</span></label>
                             <select
+                                ref={selectGender}
                                 id="gender"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             >
@@ -89,67 +165,10 @@ const Checkout = () => {
                                 <option value="Others">Other</option>
                             </select>
                         </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label htmlFor="presentAddress" className="block font-semibold text-base mb-2">Present Address:</label>
-                            <textarea
-                                id="presentAddress"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="permanentAddress" className="block font-semibold text-base mb-2">Permanent Address:</label>
-                            <textarea
-                                id="permanentAddress"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label htmlFor="nid" className="block font-semibold text-base mb-2">NID Number:</label>
-                            <input
-                                type="text"
-                                id="nid"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="mobile" className="block font-semibold text-base mb-2">Mobile No:</label>
-                            <input
-                                type="text"
-                                id="mobile"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label htmlFor="guardianName" className="block font-semibold text-base mb-2">Local Guardian’s Name:</label>
-                            <input
-                                type="text"
-                                id="guardianName"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="dob" className="block font-semibold text-base mb-2">Date of Birth:</label>
-                            <input
-                                type="date"
-                                id="dob"
-                                className="w-full border border-gray-300 rounded-md p-2"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label htmlFor="bloodGroup" className="block font-semibold text-base mb-2">Blood Group:</label>
+                            <label htmlFor="bloodGroup" className="block font-semibold text-base mb-2">Blood Group:<span className='text-red-600'>*</span></label>
                             <select
+                                ref={selectBloodGroup}
                                 id="bloodGroup"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             >
@@ -165,11 +184,36 @@ const Checkout = () => {
                             </select>
                         </div>
                     </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label htmlFor="present_address" className="block font-semibold text-base mb-2">Present Address:<span className='text-red-600'>*</span></label>
+                            <textarea
+                                name='present_address'
+                                id="present_address"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="permanent_address" className="block font-semibold text-base mb-2">Permanent Address:<span className='text-red-600'>*</span></label>
+                            <textarea
+                                name='permanent_address'
+                                id="permanent_address"
+                                className="w-full border border-gray-300 rounded-md p-2"
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <label htmlFor="photo" className="block font-semibold text-base mb-2">Student Photo:<span className='text-red-600'>*</span></label>
+                        <input
+                            name='photo'
+                            type="file"
+                            id="dob"
+                            className="w-full border border-gray-300 rounded-md p-2"
+                        />
+                    </div>
                 </div>
-
                 <div className="m-mt_16px">
-
-
                     <div className="pt-p_16px">
                         <div className="lg:flex items-start gap-3">
                             <div className="w-full lg:w-[58%] bg-white border-2">
@@ -192,26 +236,24 @@ const Checkout = () => {
                                     </thead>
 
                                     <tbody className="overflow-x-auto ">
-
                                         <tr className="border-b border-gray-300 overflow-x-auto">
                                             <td>
                                                 <div className="flex items-center justify-center ">
                                                     <div className="w-[20%] text-center flex items-center justify-center ">
                                                         <RiDeleteBin5Line
                                                             className="text-xl hover:text-footer_color cursor-pointer"
-
                                                         />
                                                     </div>
                                                     <div className="flex flex-col text-center justify-center items-center py-2  w-[80%]">
                                                         <div className="mask">
                                                             <img
                                                                 className="h-[40px] w-[70px]"
-                                                                src=''
+                                                                src={cartSummary?.photo}
                                                                 alt='Course'
                                                             />
                                                         </div>
                                                         <p className="text-[14.4px] px-[7px] text-center flex ">
-                                                            Course name  <span className="hidden lg:flex ">- unit name</span>
+                                                            {cartSummary?.course_name}  <span className="hidden lg:flex "></span>
                                                         </p>
                                                     </div>
 
@@ -219,40 +261,19 @@ const Checkout = () => {
                                             </td>
                                             <td>
                                                 <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-                                                    discount price
+                                                    {cartSummary?.price}
                                                 </p>
                                             </td>
                                             <td>
                                                 <div className="flex justify-center">
                                                     <div className="border">
-                                                        <button
-                                                            className="px-4 w-[30px] font-bold font_standard my-1.5"
-
-                                                        >
-                                                            -
-                                                        </button>
-                                                    </div>
-                                                    <div className="border-y">
-                                                        <input
-                                                            type="number"
-                                                            className="font-bold w-[30px] lg:w-[60px] font_standard px-2 text-center mx-auto h-full"
-
-                                                        />
-                                                    </div>
-                                                    <div className="border">
-                                                        <button
-                                                            className="px-4 w-[30px] font-bold font_standard my-1.5"
-
-                                                        >
-                                                            +
-                                                        </button>
+                                                        <h1 className="font-bold w-[30px] lg:w-[60px] font_standard px-2 py-2 text-center mx-auto h-full">{cartSummary.quantity}</h1>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-
-                                                    discount price * quantity
+                                                    {cartSummary.totalPrice}
                                                 </p>
                                             </td>
                                         </tr>
@@ -268,25 +289,26 @@ const Checkout = () => {
                                     <div className="py-3 flex justify-between border-b border-gray-300">
                                         <p className="text-black font-bold">Total Price</p>
                                         <p className="text-black font-bold">
-
+                                            {cartSummary.totalPrice}
                                         </p>
                                     </div>
 
-                                    <Link
-
-                                        state={"bdt"}
-                                        className="font-medium text-black mb-2 border-2 hover:bg-[#D2C5A2] duration-300 py-2 px-4  block text-center mx-auto w-full"
-                                    >
-                                        Submit
-                                    </Link>
+                                    <button className="font-medium text-black mb-2 border-2 hover:bg-[#D2C5A2] duration-300 py-2 px-4  block text-center mx-auto w-full">
+                                        <Link
+                                            state={"bdt"}
+                                        >
+                                            Submit
+                                        </Link>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </form>
 
-           
+
         </div>
     );
 };
