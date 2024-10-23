@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { BasicContext } from "../../ContextAPIs/BasicProvider";
@@ -11,9 +11,11 @@ const Cart = () => {
     const totalPrice = cart[0]?.discount_price * quantity;
 
     const handleCartSummary = (discount_price, photo, course_name, id, regular_price) => {
-        const summary = { quantity, discount_price, totalPrice, photo, course_name, course_id : id, regular_price };
+        const summary = { quantity, discount_price, totalPrice, photo, course_name, course_id: id, regular_price };
         setCartSummary(summary);
     }
+
+    const notify = () => toast.warning("Cart is empty");
 
     return (
         <div className="m-mt_16px">
@@ -43,90 +45,90 @@ const Cart = () => {
 
                             {
                                 cart.length > 0
-                                ? 
-                                <tbody className="overflow-x-auto ">
+                                    ?
+                                    <tbody className="overflow-x-auto ">
 
-                                <tr className="border-b border-gray-300 overflow-x-auto">
-                                    <td>
-                                        <div className="flex items-center justify-center ">
-                                            <div className="w-[20%] text-center flex items-center justify-center ">
-                                                <RiDeleteBin5Line
-                                                    className="text-xl hover:text-footer_color cursor-pointer"
+                                        <tr className="border-b border-gray-300 overflow-x-auto">
+                                            <td>
+                                                <div className="flex items-center justify-center ">
+                                                    <div className="w-[20%] text-center flex items-center justify-center ">
+                                                        <RiDeleteBin5Line
+                                                            className="text-xl hover:text-footer_color cursor-pointer"
 
-                                                />
-                                            </div>
-                                            <div className="flex flex-col text-center justify-center items-center py-2  w-[80%]">
-                                                <div className="mask">
-                                                    <img
-                                                        className="h-[40px] w-[70px]"
-                                                        src={cart[0]?.photo}
-                                                        alt='Course'
-                                                    />
+                                                        />
+                                                    </div>
+                                                    <div className="flex flex-col text-center justify-center items-center py-2  w-[80%]">
+                                                        <div className="mask">
+                                                            <img
+                                                                className="h-[40px] w-[70px]"
+                                                                src={cart[0]?.photo}
+                                                                alt='Course'
+                                                            />
+                                                        </div>
+                                                        <p className="text-[14.4px] px-[7px] text-center flex ">
+                                                            {cart[0]?.course_name}  <span className="hidden lg:flex "></span>
+                                                        </p>
+                                                    </div>
+
                                                 </div>
-                                                <p className="text-[14.4px] px-[7px] text-center flex ">
-                                                    {cart[0]?.course_name}  <span className="hidden lg:flex "></span>
+                                            </td>
+                                            <td>
+                                                <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
+                                                    {cart[0]?.discount_price}Tk
                                                 </p>
-                                            </div>
+                                            </td>
+                                            <td>
+                                                <div className="flex justify-center">
+                                                    <div className="border">
+                                                        {
+                                                            quantity > 1
+                                                                ?
+                                                                <button
+                                                                    onClick={() => setQuantity(quantity - 1)}
+                                                                    className="px-4 w-[30px] font-bold font_standard my-1.5"
 
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-                                            {cart[0]?.discount_price}Tk
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <div className="flex justify-center">
-                                            <div className="border">
-                                                {
-                                                    quantity > 1
-                                                        ?
-                                                        <button
-                                                            onClick={() => setQuantity(quantity - 1)}
-                                                            className="px-4 w-[30px] font-bold font_standard my-1.5"
+                                                                >
+                                                                    -
+                                                                </button>
+                                                                :
+                                                                <button
+                                                                    className="text-gray-300 cursor-default px-4 w-[30px] font-bold font_standard my-1.5"
 
-                                                        >
-                                                            -
-                                                        </button>
-                                                        :
-                                                        <button
-                                                            className="text-gray-300 cursor-default px-4 w-[30px] font-bold font_standard my-1.5"
-
-                                                        >
-                                                            -
-                                                        </button>
-                                                }
-                                            </div>
-                                            <div className="border-y">
-                                                {/* <input
+                                                                >
+                                                                    -
+                                                                </button>
+                                                        }
+                                                    </div>
+                                                    <div className="border-y">
+                                                        {/* <input
                                                     value={quantity}
                                                     type="number"
                                                     
 
                                                 /> */}
-                                                <h1 className="font-bold w-[30px] lg:w-[60px] font_standard px-2 py-2 text-center mx-auto h-full">{quantity}</h1>
-                                            </div>
-                                            <div className="border">
-                                                <button
-                                                    onClick={() => setQuantity(quantity + 1)}
-                                                    className="px-4 w-[30px] font-bold font_standard my-1.5"
+                                                        <h1 className="font-bold w-[30px] lg:w-[60px] font_standard px-2 py-2 text-center mx-auto h-full">{quantity}</h1>
+                                                    </div>
+                                                    <div className="border">
+                                                        <button
+                                                            onClick={() => setQuantity(quantity + 1)}
+                                                            className="px-4 w-[30px] font-bold font_standard my-1.5"
 
-                                                >
-                                                    +
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-                                            {totalPrice}Tk
-                                        </p>
-                                    </td>
-                                </tr>
+                                                        >
+                                                            +
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
+                                                    {totalPrice}Tk
+                                                </p>
+                                            </td>
+                                        </tr>
 
-                            </tbody>
-                            : 
-                                                    <p>Cart is empty</p>
+                                    </tbody>
+                                    :
+                                    <p>Cart is empty</p>
                             }
                         </table>
                     </div>
@@ -139,27 +141,41 @@ const Cart = () => {
                                 <p className="text-black font-bold">Total Price :
                                     {
                                         cart.length > 0
-                                        ? 
-                                        totalPrice
-                                        : 
-                                        '0'
+                                            ?
+                                            totalPrice
+                                            :
+                                            '0'
                                     } Tk</p>
                                 <p className="text-black font-bold">
                                 </p>
                             </div>
 
-                            <Link
-                                onClick={() => handleCartSummary(cart[0]?.discount_price, cart[0]?.photo, cart[0]?.course_name, cart[0]?.id, cart[0]?.regular_price)}
-                                to={`/checkout`}
-                                state={"bdt"}
-                                className="font-medium text-black mb-2 border-2 hover:bg-[#D2C5A2] duration-300 py-2 px-4  block text-center mx-auto w-full"
-                            >
-                                PROCEED TO CHECKOUT
-                            </Link>
+                            {
+                                cart.length === 0
+                                    ?
+                                    <Link
+                                        // onClick={() => handleCartSummary(cart[0]?.discount_price, cart[0]?.photo, cart[0]?.course_name, cart[0]?.id, cart[0]?.regular_price)}
+                                        // to={`/checkout`}
+                                        onClick={notify}
+                                        state={"bdt"}
+                                        className="font-medium text-black mb-2 border-2 hover:bg-[#D2C5A2] duration-300 py-2 px-4  block text-center mx-auto w-full"
+                                    >
+                                        PROCEED TO CHECKOUT
+                                    </Link>
+                                    : <Link
+                                        onClick={() => handleCartSummary(cart[0]?.discount_price, cart[0]?.photo, cart[0]?.course_name, cart[0]?.id, cart[0]?.regular_price)}
+                                        to={`/checkout`}
+                                        state={"bdt"}
+                                        className="font-medium text-black mb-2 border-2 hover:bg-[#D2C5A2] duration-300 py-2 px-4  block text-center mx-auto w-full"
+                                    >
+                                        PROCEED TO CHECKOUT
+                                    </Link>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
+            <ToastContainer autoClose={2000}/>
         </div>
     );
 };
