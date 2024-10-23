@@ -41,9 +41,9 @@ const CourseCard = ({ courseData }) => {
                                     </span>
                                 ))}
                             </div> */}
-                <p className="text-gray-600 text-md mb-4">
+                {/* <p className="text-gray-600 text-md mb-4">
                     Course Details <span className="text-blue-500">Show Details</span>
-                </p>
+                </p> */}
                 <hr />
                 <div className="mt-4 flex justify-between items-center">
                     <div>
